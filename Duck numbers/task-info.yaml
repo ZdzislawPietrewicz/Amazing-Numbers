@@ -244,49 +244,158 @@ files:
 
     }
   learner_created: false
-- name: test/NumberProperty.java
-  visible: false
-  text: |
-    import java.util.Optional;
-    import java.util.function.LongPredicate;
-    import java.util.regex.Pattern;
-    import java.util.stream.LongStream;
+- name: src/logic/CheckNumber.java
+  visible: true
+  text: |-
+    package logic;
 
-    public enum NumberProperty implements LongPredicate {
-        BUZZ(x -> x % 7 == 0 || x % 10 == 7),
-        DUCK(number -> digits(number).anyMatch(digit -> digit == 0)),
-        EVEN(x -> x % 2 == 0),
-        ODD(x -> x % 2 != 0);
+    import java.util.ArrayList;
+    import java.util.List;
 
-        private final LongPredicate hasProperty;
-        private final Pattern pattern = Pattern.compile(
-                name() + "\\s*[:-]\\s*(?<value>true|false)",
-                Pattern.CASE_INSENSITIVE
-        );
+    import model.Number;
 
-        NumberProperty(LongPredicate hasProperty) {
-            this.hasProperty = hasProperty;
+    public class CheckNumber {
+        public static boolean isOddNumber(int number) {
+            if (number % 2 == 1)
+                return true;
+            else return false;
         }
 
-        private static LongStream digits(long number) {
-            return Long.toString(number).chars().mapToLong(Character::getNumericValue);
+        public static boolean isDivisibleBy7(int number) {
+            if (number % 7 == 0) return true;
+            else return false;
+        }
+
+        public static boolean endsWith7(int number) {
+            if (number % 10 % 10 == 7) return true;
+            else return false;
+        }
+
+        public static boolean duckNumber(int number) {
+            boolean isDuckNumber=false;
+            int remainder;
+            do {
+                remainder = number % 10;
+                number /= 10;
+                if (remainder == 0) isDuckNumber = true;
+            } while (number <= 10);
+            return isDuckNumber;
+        }
+    }
+  learner_created: true
+- name: src/model/Number.java
+  visible: true
+  text: |
+    package model;
+
+    public class Number {
+        private int number;
+        private boolean oddNumber;
+        private boolean buzzNumber;
+        private boolean divisibleBy7;
+        private boolean endsWith7;
+        private boolean duckNumber;
+
+        public Number(int number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber) {
+            this.number = number;
+            this.oddNumber = oddNumber;
+            this.divisibleBy7 = divisibleBy7;
+            this.endsWith7 = endsWith7;
+            if (divisibleBy7 || endsWith7) {
+                buzzNumber = true;
+            }
+            this.duckNumber = duckNumber;
+        }
+
+        public int getNumber() {
+            return number;
+        }
+
+        public void setNumber(int number) {
+            this.number = number;
+        }
+
+        public boolean isOddNumber() {
+            return oddNumber;
+        }
+
+        public void setOddNumber(boolean oddNumber) {
+            this.oddNumber = oddNumber;
+        }
+
+        public boolean isBuzzNumber() {
+            return buzzNumber;
+        }
+
+        public void setBuzzNumber(boolean buzzNumber) {
+            this.buzzNumber = buzzNumber;
+        }
+
+        public boolean isDivisibleBy7() {
+            return divisibleBy7;
+        }
+
+        public void setDivisibleBy7(boolean divisibleBy7) {
+            this.divisibleBy7 = divisibleBy7;
+        }
+
+        public boolean isEndsWith7() {
+            return endsWith7;
+        }
+
+        public void setEndsWith7(boolean endsWith7) {
+            this.endsWith7 = endsWith7;
+        }
+
+        public boolean isDuckNumber() {
+            return duckNumber;
+        }
+
+        public void setDuckNumber(boolean duckNumber) {
+            this.duckNumber = duckNumber;
         }
 
         @Override
-        public boolean test(long number) {
-            return hasProperty.test(number);
+        public String toString() {
+            return "Properties of " + number + "\n" +
+                    "even: " + !oddNumber + "\n" +
+                    "odd: " + oddNumber + "\n" +
+                    "buzz: " + buzzNumber + "\n" +
+                    "duck: " + duckNumber ;
         }
 
-        public Optional<Boolean> extractValue(String output) {
-            final var matcher = pattern.matcher(output);
-            final var isFound = matcher.find();
-            return Optional
-                    .ofNullable(isFound ? matcher.group("value") : null)
-                    .map(Boolean::valueOf);
-        }
 
     }
-  learner_created: false
+  learner_created: true
+- name: src/numbers/InfoPrinting.java
+  visible: true
+  text: |-
+    package numbers;
+
+    import model.Number;
+
+    public class InfoPrinting {
+        public static void printOddOrEvenInfo(Number number) {
+            if (number.isOddNumber()) System.out.println("This number is Odd.");
+            else System.out.println("This number is Even.");
+        }
+
+        public static void printBuzzNumberInfo(Number number) {
+            if (number.isBuzzNumber()) System.out.println("It is a Buzz number.");
+            else System.out.println("It is not a Buzz number.");
+            System.out.println("Explanation:");
+            if (number.isDivisibleBy7() == true && number.isEndsWith7() == true) {
+                System.out.printf("%d is divisible by 7 and ends with 7.", number.getNumber());
+            } else if (number.isDivisibleBy7() == true && number.isEndsWith7() == false) {
+                System.out.printf("%d is divisible by 7.", number.getNumber());
+            } else if (number.isDivisibleBy7() == false && number.isEndsWith7() == true) {
+                System.out.printf("%d ends with 7.", number.getNumber());
+            } else if (number.isDivisibleBy7() == false && number.isEndsWith7() == false) {
+                System.out.printf("%d is neither divisible by 7 nor does it end with 7.", number.getNumber());
+            }
+        }
+    }
+  learner_created: true
 - name: test/PropertiesChecker.java
   visible: false
   text: |
@@ -331,6 +440,52 @@ files:
         }
     }
   learner_created: false
+- name: test/NumberProperty.java
+  visible: false
+  text: |
+    import java.util.Optional;
+    import java.util.function.LongPredicate;
+    import java.util.regex.Pattern;
+    import java.util.stream.LongStream;
+
+    public enum NumberProperty implements LongPredicate {
+        BUZZ(x -> x % 7 == 0 || x % 10 == 7),
+        DUCK(number -> digits(number).anyMatch(digit -> digit == 0)),
+        EVEN(x -> x % 2 == 0),
+        ODD(x -> x % 2 != 0);
+
+        private final LongPredicate hasProperty;
+        private final Pattern pattern = Pattern.compile(
+                name() + "\\s*[:-]\\s*(?<value>true|false)",
+                Pattern.CASE_INSENSITIVE
+        );
+
+        NumberProperty(LongPredicate hasProperty) {
+            this.hasProperty = hasProperty;
+        }
+
+        private static LongStream digits(long number) {
+            return Long.toString(number).chars().mapToLong(Character::getNumericValue);
+        }
+
+        @Override
+        public boolean test(long number) {
+            return hasProperty.test(number);
+        }
+
+        public Optional<Boolean> extractValue(String output) {
+            final var matcher = pattern.matcher(output);
+            final var isFound = matcher.find();
+            return Optional
+                    .ofNullable(isFound ? matcher.group("value") : null)
+                    .map(Boolean::valueOf);
+        }
+
+    }
+  learner_created: false
 feedback_link: https://hyperskill.org/learn/step/13199#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 15 Jul 2022 12:14:33 UTC
 record: -1

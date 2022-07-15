@@ -21,4 +21,15 @@ public class CheckNumber {
         if (number % 10 % 10 == 7) return true;
         else return false;
     }
+
+    public static boolean duckNumber(int number) {
+        boolean isDuckNumber=false;
+        int remainder;
+        do {
+            remainder = number % 10;
+            number /= 10;
+            if (remainder == 0 ) isDuckNumber = true;
+        } while (number > 9);
+        return isDuckNumber;
+    }
 }
