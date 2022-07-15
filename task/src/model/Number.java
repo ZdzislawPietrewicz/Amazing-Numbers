@@ -1,14 +1,15 @@
 package model;
 
 public class Number {
-    private int number;
+    private long number;
     private boolean oddNumber;
     private boolean buzzNumber;
     private boolean divisibleBy7;
     private boolean endsWith7;
     private boolean duckNumber;
+    private boolean palindromicNumber;
 
-    public Number(int number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber) {
+    public Number(long number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber, boolean palindromicNumber) {
         this.number = number;
         this.oddNumber = oddNumber;
         this.divisibleBy7 = divisibleBy7;
@@ -17,13 +18,14 @@ public class Number {
             buzzNumber = true;
         }
         this.duckNumber = duckNumber;
+        this.palindromicNumber = palindromicNumber;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(long number) {
         this.number = number;
     }
 
@@ -67,13 +69,22 @@ public class Number {
         this.duckNumber = duckNumber;
     }
 
+    public boolean isPalindromicNumber() {
+        return palindromicNumber;
+    }
+
+    public void setPalindromicNumber(boolean palindromicNumber) {
+        this.palindromicNumber = palindromicNumber;
+    }
+
     @Override
     public String toString() {
         return "Properties of " + number + "\n" +
                 "even: " + !oddNumber + "\n" +
                 "odd: " + oddNumber + "\n" +
                 "buzz: " + buzzNumber + "\n" +
-                "duck: " + duckNumber ;
+                "duck: " + duckNumber + "\n" +
+                "palindromic: " + palindromicNumber + "\n";
     }
 
 

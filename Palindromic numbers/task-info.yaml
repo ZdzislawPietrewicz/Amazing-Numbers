@@ -382,6 +382,176 @@ files:
         }
     }
   learner_created: false
+- name: src/logic/CheckNumber.java
+  visible: true
+  text: |-
+    package logic;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    import model.Number;
+
+    public class CheckNumber {
+        public static boolean isOddNumber(long number) {
+            if (number % 2 == 1)
+                return true;
+            else return false;
+        }
+
+        public static boolean isDivisibleBy7(long number) {
+            if (number % 7 == 0) return true;
+            else return false;
+        }
+
+        public static boolean endsWith7(long number) {
+            if (number % 10 % 10 == 7) return true;
+            else return false;
+        }
+
+        public static boolean duckNumber(long number) {
+            boolean isDuckNumber = false;
+            long remainder;
+            do {
+                remainder = number % 10;
+                number /= 10;
+                if (remainder == 0) isDuckNumber = true;
+            } while (number > 9);
+            return isDuckNumber;
+        }
+
+        public static boolean palindromicNumber(long initialNumber) {
+            boolean isPalindromicNumber = false;
+            long number = initialNumber;
+            long remainder;
+            long reverse = 0;
+            do {
+                remainder = number % 10;
+                reverse = reverse * 10 + remainder;
+                number /= 10;
+            } while (number > 0);
+            if (initialNumber == reverse) return true;
+            else
+                return false;
+        }
+    }
+  learner_created: true
+- name: src/model/Number.java
+  visible: true
+  text: |
+    package model;
+
+    public class Number {
+        private long number;
+        private boolean oddNumber;
+        private boolean buzzNumber;
+        private boolean divisibleBy7;
+        private boolean endsWith7;
+        private boolean duckNumber;
+        private boolean palindromicNumber;
+
+        public Number(long number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber, boolean palindromicNumber) {
+            this.number = number;
+            this.oddNumber = oddNumber;
+            this.divisibleBy7 = divisibleBy7;
+            this.endsWith7 = endsWith7;
+            if (divisibleBy7 || endsWith7) {
+                buzzNumber = true;
+            }
+            this.duckNumber = duckNumber;
+            this.palindromicNumber = palindromicNumber;
+        }
+
+        public long getNumber() {
+            return number;
+        }
+
+        public void setNumber(long number) {
+            this.number = number;
+        }
+
+        public boolean isOddNumber() {
+            return oddNumber;
+        }
+
+        public void setOddNumber(boolean oddNumber) {
+            this.oddNumber = oddNumber;
+        }
+
+        public boolean isBuzzNumber() {
+            return buzzNumber;
+        }
+
+        public void setBuzzNumber(boolean buzzNumber) {
+            this.buzzNumber = buzzNumber;
+        }
+
+        public boolean isDivisibleBy7() {
+            return divisibleBy7;
+        }
+
+        public void setDivisibleBy7(boolean divisibleBy7) {
+            this.divisibleBy7 = divisibleBy7;
+        }
+
+        public boolean isEndsWith7() {
+            return endsWith7;
+        }
+
+        public void setEndsWith7(boolean endsWith7) {
+            this.endsWith7 = endsWith7;
+        }
+
+        public boolean isDuckNumber() {
+            return duckNumber;
+        }
+
+        public void setDuckNumber(boolean duckNumber) {
+            this.duckNumber = duckNumber;
+        }
+
+        public boolean isPalindromicNumber() {
+            return palindromicNumber;
+        }
+
+        public void setPalindromicNumber(boolean palindromicNumber) {
+            this.palindromicNumber = palindromicNumber;
+        }
+
+        @Override
+        public String toString() {
+            return "Properties of " + number + "\n" +
+                    "even: " + !oddNumber + "\n" +
+                    "odd: " + oddNumber + "\n" +
+                    "buzz: " + buzzNumber + "\n" +
+                    "duck: " + duckNumber + "\n" +
+                    "palindromic: " + palindromicNumber + "\n";
+        }
+
+
+    }
+  learner_created: true
+- name: src/numbers/InfoPrinting.java
+  visible: true
+  text: |-
+    package numbers;
+
+    import model.Number;
+
+    public class InfoPrinting {
+        public static void welcomeUser (){
+            System.out.println("Welcome to Amazing Numbers!");
+            System.out.println("");
+            System.out.println("Supported requests:");
+            System.out.println("- enter a natural number to know its properties;");
+            System.out.println("- enter 0 to exit.");
+            System.out.println("");
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/13200#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 15 Jul 2022 13:19:23 UTC
 record: -1
