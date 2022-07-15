@@ -313,9 +313,18 @@ files:
 
     }
   learner_created: false
+- name: src/logic/CheckNumber.java
+  visible: true
+  learner_created: true
+- name: src/numbers/InfoPrinting.java
+  visible: true
+  learner_created: true
 - name: src/model/Number.java
   visible: true
   learner_created: true
-feedback_link: https://hyperskill.org/projects/184/stages/931/implement#comment
-status: Unchecked
+feedback_link: https://hyperskill.org/learn/step/13198#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 15 Jul 2022 11:14:50 UTC
 record: -1
