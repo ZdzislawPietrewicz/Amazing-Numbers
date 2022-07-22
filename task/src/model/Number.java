@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Number {
     private long number;
     private boolean oddNumber;
@@ -8,8 +11,11 @@ public class Number {
     private boolean endsWith7;
     private boolean duckNumber;
     private boolean palindromicNumber;
+    private boolean gapfulNumber;
+    private boolean isSpyNumber;
 
-    public Number(long number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber, boolean palindromicNumber) {
+    public Number(long number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber,
+                  boolean palindromicNumber, boolean gapfulNumber, boolean isSpyNumber) {
         this.number = number;
         this.oddNumber = oddNumber;
         this.divisibleBy7 = divisibleBy7;
@@ -19,6 +25,8 @@ public class Number {
         }
         this.duckNumber = duckNumber;
         this.palindromicNumber = palindromicNumber;
+        this.gapfulNumber=gapfulNumber;
+        this.isSpyNumber=isSpyNumber;
     }
 
     public long getNumber() {
@@ -77,6 +85,22 @@ public class Number {
         this.palindromicNumber = palindromicNumber;
     }
 
+    public boolean isGapfulNumber() {
+        return gapfulNumber;
+    }
+
+    public void setGapfulNumber(boolean gapfulNumber) {
+        this.gapfulNumber = gapfulNumber;
+    }
+
+    public boolean isSpyNumber() {
+        return isSpyNumber;
+    }
+
+    public void setSpyNumber(boolean spyNumber) {
+        isSpyNumber = spyNumber;
+    }
+
     @Override
     public String toString() {
         return "Properties of " + number + "\n" +
@@ -84,7 +108,10 @@ public class Number {
                 "odd: " + oddNumber + "\n" +
                 "buzz: " + buzzNumber + "\n" +
                 "duck: " + duckNumber + "\n" +
-                "palindromic: " + palindromicNumber + "\n";
+                "palindromic: " + palindromicNumber + "\n"+
+                "gapful: " + gapfulNumber + "\n" +
+                "spy: " + isSpyNumber + "\n";
+
     }
 
 

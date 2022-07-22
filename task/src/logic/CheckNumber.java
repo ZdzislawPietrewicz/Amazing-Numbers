@@ -47,4 +47,31 @@ public class CheckNumber {
         else
             return false;
     }
+
+    public static boolean gapfulNumber(long number) {
+        String stringFromNumber = String.valueOf(number);
+        if (stringFromNumber.length() >= 3) {
+            String concatFirstLastNumber = String.valueOf(stringFromNumber.charAt(0)).concat(String.valueOf(stringFromNumber.charAt(stringFromNumber.length() - 1)));
+            int concatFirstLast = Integer.valueOf(concatFirstLastNumber);
+            if (number % concatFirstLast == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isSpyNumber(long number) {
+        long remainder;
+        int sum = 0;
+        int mul = 1;
+        while (number > 0) {
+            remainder = number % 10;
+            sum += remainder;
+            mul *= remainder;
+            number /= 10;
+        }
+        if (sum == mul) return true;
+        else return false;
+    }
+
 }
