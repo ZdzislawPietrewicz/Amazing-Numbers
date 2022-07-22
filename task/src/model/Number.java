@@ -13,9 +13,11 @@ public class Number {
     private boolean palindromicNumber;
     private boolean gapfulNumber;
     private boolean isSpyNumber;
+    private boolean isSquareNumber;
+    private boolean isSunnyNumber;
 
     public Number(long number, boolean oddNumber, boolean divisibleBy7, boolean endsWith7, boolean duckNumber,
-                  boolean palindromicNumber, boolean gapfulNumber, boolean isSpyNumber) {
+                  boolean palindromicNumber, boolean gapfulNumber, boolean isSpyNumber, boolean isSquareNumber, boolean isSunnyNumber) {
         this.number = number;
         this.oddNumber = oddNumber;
         this.divisibleBy7 = divisibleBy7;
@@ -25,8 +27,10 @@ public class Number {
         }
         this.duckNumber = duckNumber;
         this.palindromicNumber = palindromicNumber;
-        this.gapfulNumber=gapfulNumber;
-        this.isSpyNumber=isSpyNumber;
+        this.gapfulNumber = gapfulNumber;
+        this.isSpyNumber = isSpyNumber;
+        this.isSquareNumber = isSquareNumber;
+        this.isSunnyNumber = isSunnyNumber;
     }
 
     public long getNumber() {
@@ -101,6 +105,22 @@ public class Number {
         isSpyNumber = spyNumber;
     }
 
+    public boolean isSquareNumber() {
+        return isSquareNumber;
+    }
+
+    public void setSquareNumber(boolean squareNumber) {
+        isSquareNumber = squareNumber;
+    }
+
+    public boolean isSunnyNumber() {
+        return isSunnyNumber;
+    }
+
+    public void setSunnyNumber(boolean sunnyNumber) {
+        isSunnyNumber = sunnyNumber;
+    }
+
     @Override
     public String toString() {
         return "Properties of " + number + "\n" +
@@ -108,11 +128,10 @@ public class Number {
                 "odd: " + oddNumber + "\n" +
                 "buzz: " + buzzNumber + "\n" +
                 "duck: " + duckNumber + "\n" +
-                "palindromic: " + palindromicNumber + "\n"+
+                "palindromic: " + palindromicNumber + "\n" +
                 "gapful: " + gapfulNumber + "\n" +
-                "spy: " + isSpyNumber + "\n";
-
+                "spy: " + isSpyNumber + "\n" +
+                "square: " + isSquareNumber + "\n" +
+                "sunny: " + isSunnyNumber + "\n";
     }
-
-
 }

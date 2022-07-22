@@ -1,9 +1,6 @@
 package logic;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import model.Number;
 
 public class CheckNumber {
     public static boolean isOddNumber(long number) {
@@ -72,6 +69,13 @@ public class CheckNumber {
         }
         if (sum == mul) return true;
         else return false;
+    }
+    public static boolean isSquareNumber(long number){
+        double squareRoot=Math.sqrt(number);
+        return squareRoot-Math.floor(squareRoot)==0;
+    }
+    public static boolean isSunnyNumber(long number){
+        return isSquareNumber(number+1);
     }
 
 }

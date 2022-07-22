@@ -38,6 +38,8 @@ public class InfoPrinting {
             if (number.isPalindromicNumber()==true) stringBuilder.append("palindromic, ");
             if (number.isGapfulNumber()==true) stringBuilder.append("gapful, ");
             if (number.isSpyNumber()==true) stringBuilder.append("spy, ");
+            if (number.isSquareNumber()) stringBuilder.append("square, ");
+            if (number.isSunnyNumber()) stringBuilder.append("sunny, ");
             if (number.isOddNumber()==true) stringBuilder.append("odd"); else stringBuilder.append("even");
             stringBuilder.append("\n");
 

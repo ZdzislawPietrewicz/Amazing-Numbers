@@ -116,6 +116,24 @@ public class Main {
                                     valueFirstArgument++;
                                 } while (valueSecondArgument > 0);
                                 break;
+                            case "SQUARE":
+                                do {
+                                    if (CheckNumber.isSquareNumber(valueFirstArgument)) {
+                                        userInputArray.add(createNewNumber(valueFirstArgument));
+                                        valueSecondArgument--;
+                                    }
+                                    valueFirstArgument++;
+                                } while (valueSecondArgument > 0);
+                                break;
+                            case "SUNNY":
+                                do {
+                                    if (CheckNumber.isSunnyNumber(valueFirstArgument)) {
+                                        userInputArray.add(createNewNumber(valueFirstArgument));
+                                        valueSecondArgument--;
+                                    }
+                                    valueFirstArgument++;
+                                } while (valueSecondArgument > 0);
+                                break;
                             default:
                                 InfoPrinting.handlingExceptionWrongProperty(userRequestArguments.get(2).toUpperCase());
                                 break;
@@ -135,7 +153,8 @@ public class Main {
         Number number = new Number(longValue, CheckNumber.isOddNumber(longValue),
                 CheckNumber.isDivisibleBy7(longValue), CheckNumber.endsWith7(longValue),
                 CheckNumber.duckNumber(longValue), CheckNumber.palindromicNumber(longValue),
-                CheckNumber.gapfulNumber(longValue), CheckNumber.isSpyNumber(longValue));
+                CheckNumber.gapfulNumber(longValue), CheckNumber.isSpyNumber(longValue),CheckNumber.isSquareNumber(longValue),
+                CheckNumber.isSunnyNumber(longValue));
         return number;
     }
 }
